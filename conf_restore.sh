@@ -4,6 +4,7 @@
 #  Restore all files and subfolders in current current folder
 #  or path specified in commandline
 #  to ${toRoot}
+#  And user's crontab(if any backuped).
 # Version:
 #  20181119 - First release
 
