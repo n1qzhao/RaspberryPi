@@ -8,7 +8,7 @@ It's highly recommanded that put the scripts in your HOME/bin direction.
 ## conf_backup.sh
 
 Usage:
-#### conf_backup.sh [path]
+#### conf_backup.sh \[path\]
   path: Where to put the backuped files. If not given in command line,
         the value specified in SCRITPNAME.conf file will be used.
 
@@ -18,7 +18,7 @@ $bakFiles().
 ## conf_restore.sh
 
 Usage:
-#### conf_restore.sh [path]
+#### conf_restore.sh \[path\]
   path: Where to find the backuped files. If not given in command line,
         the current path will be used.
 
