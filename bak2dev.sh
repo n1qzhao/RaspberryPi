@@ -71,7 +71,7 @@ else
 fi
 
 if [ -b ${bakdev} ]; then
-  read -n 1 -p "All data in $bakdev will be deleted! continue/Stop:" arg
+  read -n 1 -p "All data in ${bakdev} will be deleted! continue/Stop:" arg
   case ${arg} in
     c|C)
       ;;
