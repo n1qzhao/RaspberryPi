@@ -43,6 +43,11 @@ do
 done
 
 echo "Backup your crontab"
-crontab -l > ${bakFolder}/crontab
+crontab -l >& /dev/null
+if [ ${?} -eq 0 ]; then
+	crontab -l > ${bakFolder}/crontab
+else
+	echo "No crontab to backup"
+fi
 
 exit 0
