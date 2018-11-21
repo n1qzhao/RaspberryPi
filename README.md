@@ -29,3 +29,6 @@ For normal use it should be "/", but other setting for test/special purpose.
 Used for backup the whole raspbian system.
 Unlike dd, they just backup(and restore) the useful data, not the entire storage device.
 So that you can use a just-fit media.
+
+## mkDevBootable.sh
+It's part of bak2dev.sh, just in case of no making device bootable at the time of backup.
