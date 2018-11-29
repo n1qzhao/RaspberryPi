@@ -3,6 +3,9 @@
 #  Backup files specified in SCRIPTNAME.conf and user's crontab
 #  to folder name specified in SCRIPTNAME.conf or commandline
 # Version:
+#  20181129 - Fix read permission issue
+#    If there is a file without read permission under a backuping folder,
+#    this file should be listed in bakFiles separately.
 #  20181118 - First release
 
 conf=$(dirname ${0})/$(basename ${0} .sh).conf
@@ -32,22 +35,25 @@ do
 	if [ -d ${f} ]; then
 		echo "Backup dir \"${f}\" "
 		mkdir -p ${bakFolder}$(dirname ${f})
-		cp -r ${f} ${bakFolder}$(dirname ${f})
+		if [ -r ${f} ]; then
+			cp -r ${f} ${bakFolder}$(dirname ${f})
+		else
+			sudo cp -r ${f} ${bakFolder}$(dirname ${f})
+		fi
 	elif [ -f ${f} ]; then
 		echo "Backup file \"${f}\" "
 		mkdir -p ${bakFolder}$(dirname ${f})
-		cp ${f} ${bakFolder}$(dirname ${f})
+		if [ -r ${f} ]; then
+			cp ${f} ${bakFolder}$(dirname ${f})
+		else
+			sudo cp ${f} ${bakFolder}$(dirname ${f})
+		fi
 	else
 		echo "Item \"${f}\" is not backable"
 	fi
 done
 
 echo "Backup your crontab"
-crontab -l >& /dev/null
-if [ ${?} -eq 0 ]; then
-	crontab -l > ${bakFolder}/crontab
-else
-	echo "No crontab to backup"
-fi
+crontab -l > ${bakFolder}/crontab
 
 exit 0
